@@ -4,31 +4,12 @@ import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.villagerbalance.item.ModItems;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.LecternBlockEntity;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.brain.MemoryModuleType;
-import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.item.*;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class VillagerBalanceMod implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -71,7 +52,7 @@ public class VillagerBalanceMod implements ModInitializer {
 		var isEnchantedBook = factory.getClass().getName().contains("EnchantBookFactory");
 		LOGGER.info("isEnchantedBook: " + (isEnchantedBook ? "true" : "false") + ", " + factory.getClass().getName());
 		if (isEnchantedBook) {
-			return new EnchantedBookFromLecternOrRandom(experienceLevels[level], factory);
+			return new BalancedEnchantedBookFactory(experienceLevels[level], factory, level);
 		} else return factory;
 	}
 

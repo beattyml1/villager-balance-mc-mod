@@ -2,9 +2,9 @@ package net.fabricmc.villagerbalance;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LecternBlockEntity;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.passive.VillagerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 
 public class Workstations {
@@ -23,5 +23,16 @@ public class Workstations {
         var blockPos = optionalPos.get().getPos();
         var jobSite = villager.world.getBlockEntity(blockPos);
         return jobSite;
+    }
+
+    public static ItemStack removeBookFromLectern(BlockEntity blockEntity) {
+        try {
+            var lectern = (LecternBlockEntity) blockEntity;
+            var inventory = (Inventory) Access.getPrivateField(lectern, "inventory");
+            return inventory.removeStack(0);
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 }
