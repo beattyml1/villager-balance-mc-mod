@@ -11,11 +11,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ModItems {
-    public static final Item RAW_MYTHRIL = registerItem("illuminated_tome",
-            new IlluminatedTome(new FabricItemSettings().group(ItemGroup.MISC)));
-
-
-
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(VillagerBalanceMod.MOD_ID, name), item);
     }
