@@ -14,12 +14,10 @@ import java.util.Arrays;
 
 public class BalancedEnchantedBookFactory implements TradeOffers.Factory {
     private final int experience;
-    private TradeOffers.Factory fallback;
-    private int level;
+    private final int level;
 
-    public BalancedEnchantedBookFactory(int experience, TradeOffers.Factory fallback, int level) {
+    public BalancedEnchantedBookFactory(int experience, int level) {
         this.experience = experience;
-        this.fallback = fallback;
         this.level = level;
     }
 
