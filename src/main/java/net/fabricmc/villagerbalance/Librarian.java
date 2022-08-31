@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Librarian {
@@ -15,19 +16,20 @@ public class Librarian {
         for (int i = 1; i <= 5; i++){
             var levelOffers =  librarianOffers.get(i);
             final int level = i;
-            var offers = Arrays.stream(levelOffers).map((x) -> modifyEnchantedBookFactories(x, level)).toArray(TradeOffers.Factory[]::new);
-            builder.put(i, offers);
+            var offers = new ArrayList<>(Arrays
+                    .stream(levelOffers)
+                    .filter(x -> !isEnchantBookFactory(x))
+                    .toList());
+            offers.add(getBookFactory(level));
+
+            builder.put(i, offers.toArray(TradeOffers.Factory[]::new));
         }
         var newLibrarianOffers = new Int2ObjectOpenHashMap(builder.build());
         TradeOffers.PROFESSION_TO_LEVELED_TRADE.put(VillagerProfession.LIBRARIAN, newLibrarianOffers);
     }
-    private static TradeOffers.Factory modifyEnchantedBookFactories(TradeOffers.Factory factory, int level) {
-        var isEnchantedBook = isEnchantBookFactory(factory);
-        VillagerBalanceMod.LOGGER.info("isEnchantedBook: " + (isEnchantedBook ? "true" : "false") + ", " + factory.getClass().getName());
-        if (isEnchantedBook) {
-            var bookFactory = new BalancedEnchantedBookFactory(experienceLevels[level], level);
-            return level > 1 ? bookFactory : new PredictableRandomFactoryWrapper(bookFactory);
-        } else return factory;
+    private static TradeOffers.Factory getBookFactory(int level) {
+        var bookFactory = new BalancedEnchantedBookFactory(experienceLevels[level], level);
+        return level > 1 ? bookFactory : new PredictableRandomFactoryWrapper(bookFactory);
     }
 
     private static boolean isEnchantBookFactory(TradeOffers.Factory factory) {
