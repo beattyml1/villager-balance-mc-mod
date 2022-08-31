@@ -17,7 +17,7 @@ public class EnchantmentRandomization {
         var min = villagerLevel - 1;
         if (min < 1) return 1;
         var enchantMin = enchantment.getMinLevel();
-        var enchantMax = enchantment.getMinLevel();
+        var enchantMax = enchantment.getMaxLevel();
         if (min < enchantMin) return enchantMin;
         if (min > enchantMax) return enchantMax;
         return min;
@@ -26,7 +26,7 @@ public class EnchantmentRandomization {
     public static int getMaxEnchantLevel(int villagerLevel, Enchantment enchantment) {
         var max = villagerLevel + 1;
         var enchantMin = enchantment.getMinLevel();
-        var enchantMax = enchantment.getMinLevel();
+        var enchantMax = enchantment.getMaxLevel();
         if (max < enchantMin) return enchantMin;
         if (max > enchantMax) return enchantMax;
         if (villagerLevel <= 2 && enchantMax == 3) {
@@ -38,6 +38,7 @@ public class EnchantmentRandomization {
     public static int getEnchantLevel(int villagerLevel, Enchantment enchantment, Random random) {
         var min = getMinEnchantLevel(villagerLevel, enchantment);
         var max = getMaxEnchantLevel(villagerLevel, enchantment);
+//        VillagerBalanceMod.LOGGER.info(String.format("%s:%d:%d-%d", enchantment.getName(1).getString(), villagerLevel, min, max));
         return random.nextBetween(min, max);
     }
     public static EnchantmentLevelEntry getRandomLeveledEnchant(int villagerLevel, Random random) {
