@@ -5,10 +5,12 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.villagerbalance.item.ModItems;
 import net.minecraft.village.TradeOffers;
+import net.minecraft.village.VillageGossipType;
 import net.minecraft.village.VillagerProfession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 
 public class VillagerBalanceMod implements ModInitializer {
@@ -27,6 +29,13 @@ public class VillagerBalanceMod implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 		ModItems.registerModItems();
 		Librarian.setupTrades();
+//		try {
+//			Access.setFinalStatic(VillageGossipType.MAJOR_POSITIVE, "maxValue", 20);
+//		} catch (Exception e) {
+//			LOGGER.error(e.getClass().getName());
+//			LOGGER.error(e.getMessage());
+//			LOGGER.error(e.getStackTrace().toString());
+//		}
 	}
 
 

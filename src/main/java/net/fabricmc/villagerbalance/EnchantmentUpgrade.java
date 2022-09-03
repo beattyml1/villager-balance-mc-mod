@@ -21,19 +21,15 @@ public class EnchantmentUpgrade {
         var potentials = Arrays.stream(getPreviousBookTrades(villager));
         return potentials
                 .filter(x -> x.enchantment.getMaxLevel() > x.level)
-                .filter(x -> x.level < EnchantmentRandomization.getMaxEnchantLevel(level + 1, x.enchantment))
                 .toArray(EnchantmentLevelEntry[]::new);
 
     }
 
     public static EnchantmentLevelEntry[] getPotentialUpgradedEnchants(VillagerEntity villager, int level, Random random) {
+        if (level <= 3) return new EnchantmentLevelEntry[]{};
         var potentials = Arrays.stream(getPotentialEnchantsToUpgrade(villager, level));
         return potentials
-                .map(x -> {
-                    var newLevel = EnchantmentRandomization.getEnchantLevel(level + 1, x.enchantment, random);
-                    return new EnchantmentLevelEntry(x.enchantment, newLevel > x.level ? newLevel : 0);
-                })
-                .filter(x -> x.level > 0)
+                .map(x -> new EnchantmentLevelEntry(x.enchantment, x.enchantment.getMaxLevel()))
                 .toArray(EnchantmentLevelEntry[]::new);
     }
 }

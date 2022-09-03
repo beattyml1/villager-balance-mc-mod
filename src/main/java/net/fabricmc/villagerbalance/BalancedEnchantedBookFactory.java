@@ -56,15 +56,10 @@ public class BalancedEnchantedBookFactory implements TradeOffers.Factory {
 
         if (leveledEnchant == null) {
             var upgrades = EnchantmentUpgrade.getPotentialUpgradedEnchants(villager, level, random);
-            var maxed = Arrays.stream(upgrades).filter(x -> x.level == x.enchantment.getMaxLevel()).toArray(EnchantmentLevelEntry[]::new);
-            if (maxed.length > 0) {
-                leveledEnchant = maxed[random.nextInt(maxed.length)];
+            if (upgrades.length > 0) {
+                leveledEnchant = upgrades[random.nextInt(upgrades.length)];
             } else {
-                var randomEnchant = EnchantmentRandomization.getRandomLeveledEnchant(this.level, random);
-                var poolBuilder = new ArrayList<>(Arrays.asList(upgrades));
-                poolBuilder.add(randomEnchant);
-                var finalizedPool = poolBuilder.toArray(EnchantmentLevelEntry[]::new);
-                leveledEnchant = finalizedPool[random.nextInt(finalizedPool.length)];
+                leveledEnchant = EnchantmentRandomization.getRandomLeveledEnchant(this.level, random);
             }
 
         }

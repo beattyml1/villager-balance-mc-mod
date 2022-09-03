@@ -4,7 +4,11 @@
   "package": "net.fabricmc.villagerbalance.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "EnchantedBookMixin"
+    "EnchantedBookMixin",
+    "ReputationMixin",
+    "VillageGossipsMixin",
+    "VillagerMixin",
+    "TradeOfferMixin"
   ],
   "client": [
     "VillagerBalanceMixin",

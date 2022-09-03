@@ -7,3 +7,23 @@ For setup instructions please see the [fabric wiki page](https://fabricmc.net/wi
 ## License
 
 This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+
+## Mod Balances/Mechanics
+
+### Librarians
+- Put an enchanted book on lectern to force them to trade that book
+- While you can reroll librarians to switch between paper/book/bookshelf trades, the first book trade will always be the same for a given villager no matter how many times you reroll the trades
+- The higher the level of librarian the higher level of books they're likely to trade
+- Master librarians now offer a book trade at master level
+- Expert and Master villagers if they roll a book trade and they have a lower level enchants on offer will choose a random one of those lower level enchants and offer that enchantment at the max level. If all enchantments from previous level are max level/no level they will choose a random high level enchant.
+
+### General
+- Curing zombie villager multiple times doesn't give multiple lasting positive reputation. First curing will lower prices permanently while benefits of subsequent curings will be only temporary and less pronounced.
+
+## WIP
+- Potential bonuses for villagers having slept and having adequate space and penalties for not. Probably around number of items able to be traded
+
+
+### Future
+- Experience from heavily discounted trades is slightly but noticeably reduced.
+- Potentially some locking of farmer trades and ability to set initial trades?
