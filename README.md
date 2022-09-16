@@ -6,7 +6,7 @@ For setup instructions please see the [fabric wiki page](https://fabricmc.net/wi
 
 ## License
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+This is intentionally single maintainer and not open source so that will be easy to grant any rights to Mojang if needed as it's a proof of concept. Maybe fully open sourced later.
 
 ## Mod Balances/Mechanics
 
@@ -23,7 +23,7 @@ This template is available under the CC0 license. Feel free to learn from it and
 ## WIP
 - Potential bonuses for villagers having slept and having adequate space and penalties for not. Probably around number of items able to be traded
 
-
 ### Future
 - Experience from heavily discounted trades is slightly but noticeably reduced.
 - Potentially some locking of farmer trades and ability to set initial trades?
+- Potentially heavily buff diamond trade experience for smiths, and nerf other trade at that level on experience and reduce the amount of times you can trade for diamond tools and armor
