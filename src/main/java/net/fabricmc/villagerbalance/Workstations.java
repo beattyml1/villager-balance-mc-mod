@@ -6,6 +6,8 @@ import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import org.jetbrains.annotations.Nullable;
 
 public class Workstations {
     public static ItemStack getBookFromLectern(BlockEntity blockEntity) {
@@ -18,11 +20,18 @@ public class Workstations {
     }
 
     public static BlockEntity getVillagerJobSite(VillagerEntity villager) {
+        BlockPos blockPos = getJobSiteLocation(villager);
+        if (blockPos == null) return null;
+        var jobSite = villager.world.getBlockEntity(blockPos);
+        return jobSite;
+    }
+
+    @Nullable
+    public static BlockPos getJobSiteLocation(VillagerEntity villager) {
         var optionalPos = villager.getBrain().getOptionalMemory(MemoryModuleType.JOB_SITE);
         if (!(optionalPos.isPresent())) return null;
         var blockPos = optionalPos.get().getPos();
-        var jobSite = villager.world.getBlockEntity(blockPos);
-        return jobSite;
+        return blockPos;
     }
 
     public static ItemStack removeBookFromLectern(BlockEntity blockEntity) {

@@ -29,6 +29,7 @@ public class VillagerBalanceMod implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 		ModItems.registerModItems();
 		Librarian.setupTrades();
+		Smiths.setupTrades();
 //		try {
 //			Access.setFinalStatic(VillageGossipType.MAJOR_POSITIVE, "maxValue", 20);
 //		} catch (Exception e) {
